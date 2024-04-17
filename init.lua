@@ -10,6 +10,7 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
+vim.cmd("language en_US")
 
 local opts = {}
 
