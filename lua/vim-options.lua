@@ -2,8 +2,15 @@ vim.cmd("set expandtab")
 vim.cmd("set tabstop=2")
 vim.cmd("set shiftwidth=2")
 vim.cmd("set softtabstop=2")
+
+--set line number
 vim.cmd("set number")
 --vim.cmd("set relativenumber")
+
+--search insensitive
+vim.cmd("set ignorecase")
+vim.cmd("set smartcase")
+
 vim.g.mapleader = " "
 vim.keymap.set("n", "<Leader>w", "<C-w>", {})
 
@@ -13,9 +20,20 @@ vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", {})
 vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", {})
 vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", {})
 
+local bnextdlast = function()
+  vim.cmd("bnext")
+  vim.cmd("bdelete #")
+end
+local bprevdlast = function()
+  vim.cmd("bprev")
+  vim.cmd("bdelete #")
+end
+
 vim.keymap.set({ "v", "n" }, "<Leader>j", ":bprev<CR>", {})
 vim.keymap.set({ "v", "n" }, "<Leader>k", ":bnext<CR>", {})
 vim.keymap.set({ "v", "n" }, "<Leader>dd", ":bd<CR>", {})
+vim.keymap.set({ "v", "n" }, "<Leader>dj", bprevdlast, {})
+vim.keymap.set({ "v", "n" }, "<Leader>dk", bnextdlast, {})
 
 vim.keymap.set({"v", "n"}, "<Leader>dad", ":%bd|e#|bd#<CR>", {})
 
@@ -29,5 +47,7 @@ local bufOnly = function()
     end
   end
 end
+
 vim.keymap.set({ "v", "n" }, "<Leader>dad", bufOnly, {})
+
 
