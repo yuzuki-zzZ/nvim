@@ -41,6 +41,10 @@ return {
 			local lspconfig = require("lspconfig")
 			lspconfig.tsserver.setup({
 				capabilities = capabilities,
+				on_attach = function(client, bufnr)
+					client.server_capabilities.documentFormattingProvider = false
+					client.server_capabilities.documentRangeFormattingProvider = false
+				end,
 				settings = {
 					typescript = {
 						inlayHints = {
