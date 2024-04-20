@@ -39,12 +39,14 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local lspconfig = require("lspconfig")
+
 			lspconfig.tsserver.setup({
 				capabilities = capabilities,
 				on_attach = function(client, bufnr)
 					client.server_capabilities.documentFormattingProvider = false
 					client.server_capabilities.documentRangeFormattingProvider = false
 				end,
+        root_dir = lspconfig.util.root_pattern(".git"),
 				settings = {
 					typescript = {
 						inlayHints = {
