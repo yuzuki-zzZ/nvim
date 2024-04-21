@@ -14,32 +14,53 @@ return {
 				"document_symbols",
 				"git_status",
 			},
+			window = {
+				mappings = {
+					["Y"] = {
+						function(state)
+							local node = state.tree:get_node()
+							local path = node:get_id()
+							vim.fn.setreg("+", path, "c")
+						end,
+						desc = "Copy Path to Clipboard",
+					},
+					["O"] = {
+						function(state)
+							require("lazy.util").open(state.tree:get_node().path, { system = true })
+						end,
+						desc = "Open with System Application",
+					},
+				},
+			},
+			deactivate = function()
+				vim.cmd([[Neotree close]])
+			end,
 			filesystem = {
 				follow_current_file = {
 					enabled = true,
 				},
+				use_libuv_file_watcher = true,
 				window = {
 					mappings = {
 						["<CR>"] = function(state)
 							require("neo-tree.sources.filesystem.commands").open(state)
-							require("neo-tree").close_all()
+              require("neo-tree").close_all()
 						end,
-						["S"] = function(state)
+						["s"] = function(state)
 							require("neo-tree.sources.filesystem.commands").open_vsplit(state)
-							require("neo-tree").close_all()
+              require("neo-tree").close_all()
 						end,
+						-- ["S"] = function(state)
+						-- 	require("neo-tree.sources.filesystem.commands").open_vsplit(state)
+						-- end,
 						["<Leader><Space>"] = function(state)
 							require("neo-tree.sources.filesystem.commands").open(state)
 						end,
 					},
 				},
 			},
-			--window = {
-			-- mappings = {
-			--  ["<leader>"] = {"toggle_node", nowait = false}
-			--}
-			--}
 		})
 		vim.keymap.set("n", "<leader>n", ":Neotree filesystem reveal left<CR>", {})
+		vim.keymap.set("n", "<leader>dn", ":Neotree close<CR>", {})
 	end,
 }
