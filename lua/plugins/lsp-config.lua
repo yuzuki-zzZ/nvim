@@ -43,10 +43,15 @@ return {
 			lspconfig.tsserver.setup({
 				capabilities = capabilities,
 				on_attach = function(client, bufnr)
+					local navic = require("nvim-navic")
 					client.server_capabilities.documentFormattingProvider = false
 					client.server_capabilities.documentRangeFormattingProvider = false
+
+					if client.server_capabilities.documentSymbolProvider then
+						navic.attach(client, bufnr)
+					end
 				end,
-        root_dir = lspconfig.util.root_pattern(".git"),
+				root_dir = lspconfig.util.root_pattern(".git"),
 				settings = {
 					typescript = {
 						inlayHints = {
@@ -80,6 +85,13 @@ return {
 			})
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
+				on_attach = function(client, bufnr)
+					local navic = require("nvim-navic")
+
+					if client.server_capabilities.documentSymbolProvider then
+						navic.attach(client, bufnr)
+					end
+				end,
 			})
 			lspconfig.ruff.setup({
 				capabilities = capabilities,
