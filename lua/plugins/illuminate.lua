@@ -19,6 +19,10 @@ return {
     map("]]", "next")
     map("[[", "prev")
 
+    vim.keymap.set("n", "<leader>di", function()
+      require("illuminate").toggle()
+    end, {})
+
     -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
     vim.api.nvim_create_autocmd("FileType", {
       callback = function()
