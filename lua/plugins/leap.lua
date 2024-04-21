@@ -10,10 +10,10 @@ return {
 		},
 	},
 	config = function(_, opts)
-		vim.keymap.set("n", "s", "<Plug>(leap)")
-		vim.keymap.set("n", "S", "<Plug>(leap-from-window)")
-		vim.keymap.set({ "x", "o" }, "s", "<Plug>(leap-forward)")
-		vim.keymap.set({ "x", "o" }, "S", "<Plug>(leap-backward)")
+		vim.keymap.set("n", "f", "<Plug>(leap)")
+		vim.keymap.set("n", "F", "<Plug>(leap-from-window)")
+		vim.keymap.set({ "x", "o" }, "f", "<Plug>(leap-forward)")
+		vim.keymap.set({ "x", "o" }, "F", "<Plug>(leap-backward)")
 		require("leap").setup(opts)
 	end,
 }
