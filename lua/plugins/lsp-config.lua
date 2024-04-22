@@ -62,9 +62,13 @@ return {
 			end
 
 			require("typescript-tools").setup({
-				on_attach = function(client)
+				on_attach = function(client, bufnr)
 					client.server_capabilities.documentFormattingProvider = false
 					client.server_capabilities.documentRangeFormattingProvider = false
+
+					if client.server_capabilities.documentSymbolProvider then
+						navic.attach(client, bufnr)
+					end
 				end,
 				root_dir = lspconfig.util.root_pattern(".git"),
 				settings = {
