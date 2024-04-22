@@ -5,6 +5,7 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-ui-select.nvim",
+			"sk1418/QFGrep",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
@@ -20,6 +21,11 @@ return {
 			vim.keymap.set("n", "gi", builtin.lsp_implementations, {})
 			vim.keymap.set("n", "gd", builtin.lsp_definitions, {})
 			vim.keymap.set("n", "gr", builtin.lsp_references, {})
+
+			 vim.keymap.set("n", "<leader>gg", "<Plug>QFGrepG", {})
+			 vim.keymap.set("n", "<leader>gv", "<Plug>QFGrepV", {})
+			 vim.keymap.set("n", "<leader>gr", "<Plug>QFRestore", {})
+			-- vim.cmd("nmap <Leader>gg <Plug>QFGrepG")
 
 			require("telescope").setup({
 				defaults = {
