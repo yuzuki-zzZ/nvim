@@ -25,7 +25,6 @@ return {
 			 vim.keymap.set("n", "<leader>gg", "<Plug>QFGrepG", {})
 			 vim.keymap.set("n", "<leader>gv", "<Plug>QFGrepV", {})
 			 vim.keymap.set("n", "<leader>gr", "<Plug>QFRestore", {})
-			-- vim.cmd("nmap <Leader>gg <Plug>QFGrepG")
 
 			require("telescope").setup({
 				defaults = {
