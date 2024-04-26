@@ -18,6 +18,7 @@ return {
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 			vim.keymap.set("n", "<leader>fl", builtin.builtin, {})
+      vim.keymap.set("n", "<leader>fc", builtin.git_status, {})
 			vim.keymap.set("n", "gi", builtin.lsp_implementations, {})
 			vim.keymap.set("n", "gd", builtin.lsp_definitions, {})
 			vim.keymap.set("n", "gr", builtin.lsp_references, {})
@@ -28,6 +29,11 @@ return {
 
 			require("telescope").setup({
 				defaults = {
+          mappings = {
+            n = {
+              ["<leader>s"] = require("telescope.actions").file_vsplit,
+            },
+          },
 					path_display = function(opts, path)
 						local tail = require("telescope.utils").path_tail(path)
 						return string.format("%s (%s)", tail, path)
