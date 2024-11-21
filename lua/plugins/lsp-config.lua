@@ -16,7 +16,7 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "lua_ls",
-          "tsserver",
+          "ts_ls",
           "eslint",
           "pylsp",
           "tailwindcss",
@@ -122,7 +122,7 @@ return {
           })
         end,
 
-        ["tsserver"] = function() end,
+        ["ts_ls"] = function() end,
         ["cssls"] = function()
           lspconfig.cssls.setup({
             capabilities = capabilities,
@@ -138,7 +138,12 @@ return {
               "dotnet",
               "C:\\Users\\KeaganLiu\\AppData\\Local\\nvim-data\\mason\\packages\\omnisharp\\libexec\\OmniSharp.dll",
             },
-
+            capabilities = capabilities,
+            -- root_dir = function(fname)
+            --   local primary = lspconfig.util.root_pattern("*.sln")(fname)
+            --   local fallback = lspconfig.util.root_pattern("*.csproj")(fname)
+            --   return primary or fallback
+            -- end,
             on_attach = function(client, bufnr)
               on_attach(client, bufnr)
               -- vim.keymap.set("n", "gr", function()

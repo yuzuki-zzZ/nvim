@@ -5,7 +5,7 @@ vim.cmd("set softtabstop=2")
 
 --set line number
 vim.cmd("set number")
---vim.cmd("set relativenumber")
+vim.cmd("set relativenumber")
 
 --search insensitive
 vim.cmd("set ignorecase")
